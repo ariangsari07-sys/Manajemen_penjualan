@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi Manajemen Usaha</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <h2>SIMU</h2>
+            <p>Management System</p>
+        </div>
+
+        <nav>
+
+            <a href="#" class="active">
+                📦 Data Barang
+            </a>
+
+            <a href="#">
+                🌷 Data Produk
+            </a>
+
+            <a href="#">
+                🛒 Pesanan PO
+            </a>
+
+            <a href="#">
+                💰 Keuangan
+            </a>
+
+            <a href="#">
+                📊 Dashboard
+            </a>
+
+            <a href="#">
+                ⚙ Pengaturan
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="content">
+
+        <!-- Header -->
+        <header>
+
+            <div>
+                <h1>Data Barang</h1>
+                <p>Kelola seluruh bahan yang digunakan.</p>
+            </div>
+
+            <button class="btn-tambah">
+                + Tambah Barang
+            </button>
+
+        </header>
+
+
+        <!-- Form -->
+        <section class="card">
+
+            <h3>Tambah Barang</h3>
+
+            <form>
+
+                <div class="input-group">
+
+                    <div>
+                        <label>Nama Barang</label>
+                        <input type="text">
+                    </div>
+
+                    <div>
+                        <label>Kategori</label>
+                        <input type="text">
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <div>
+                        <label>Harga Beli</label>
+                        <input type="number">
+                    </div>
+
+                    <div>
+                        <label>Jumlah</label>
+                        <input type="number">
+                    </div>
+
+                </div>
+
+                <div class="input-group">
+
+                    <div>
+                        <label>Satuan</label>
+
+                        <select>
+
+                            <option>Pcs</option>
+                            <option>Pack</option>
+                            <option>Meter</option>
+                            <option>Yard</option>
+
+                        </select>
+
+                    </div>
+
+                    <div>
+
+                        <label>Harga / Pcs</label>
+
+                        <input
+                            type="text"
+                            placeholder="Otomatis"
+                            readonly>
+
+                    </div>
+
+                </div>
+
+                <button type="submit">
+                    Simpan Barang
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Tabel -->
+        <section class="card">
+
+            <h3>Daftar Barang</h3>
+
+            <table>
+
+                <thead>
+
+                <tr>
+
+                    <th>No</th>
+                    <th>Nama Barang</th>
+                    <th>Kategori</th>
+                    <th>Harga Beli</th>
+                    <th>Jumlah</th>
+                    <th>Harga/Pcs</th>
+                    <th>Stok</th>
+                    <th>Aksi</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr>
+
+                    <td>1</td>
+                    <td>Kawat Bulu</td>
+                    <td>Kawat</td>
+                    <td>Rp21.000</td>
+                    <td>100</td>
+                    <td>Rp210</td>
+                    <td>100</td>
+                    <td>
+                        Edit | Hapus
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

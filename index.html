@@ -78,9 +78,8 @@
 
         <div>
 
-            <h1>Data Barang 🌷</h1>
-
-            <p>Kelola seluruh kebutuhan usahamu.</p>
+            <h1>Data Bahan</h1>
+<p>Kelola seluruh bahan baku untuk produk.</p>
 
         </div>
 
@@ -138,6 +137,28 @@
 
     </div>
 
+<div id="emptyState" class="empty-state">
+
+    <div class="empty-icon">
+        <i class="fa-solid fa-box-open"></i>
+    </div>
+
+    <h2>Belum Ada Data Bahan</h2>
+
+    <p>
+        Tambahkan bahan pertama untuk mulai menghitung HPP dan mengelola stok.
+    </p>
+
+    <button id="btnTambah2">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Tambah Bahan
+
+    </button>
+
+</div>
+
     <div class="table-box">
 
         <div class="table-header">
@@ -175,40 +196,9 @@
 
             </thead>
 
-            <tbody>
-
-<tr>
-
-<td>1</td>
-
-<td>Kawat Bulu Putih</td>
-
-<td>Bunga</td>
-
-<td>Rp21.000</td>
-
-<td>100</td>
-
-<td>Rp210</td>
-
-<td>100</td>
-
-<td>
-
-<button class="edit">
-<i class="fa-solid fa-pen"></i>
-</button>
-
-<button class="hapus">
-<i class="fa-solid fa-trash"></i>
-</button>
-
-</td>
-
-</tr>
+            <tbody id="tbody">
 
 </tbody>
-
         </table>
 
     </div>
@@ -256,6 +246,47 @@
         </form>
 
     </div>
+
+</div>
+
+<!-- Menu -->
+
+<div class="menu">
+
+    <a class="active">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Data Bahan</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-gift"></i>
+        <span>Data Produk</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-calculator"></i>
+        <span>Perhitungan HPP</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-file-signature"></i>
+        <span>Pesanan (PO)</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-money-bill-trend-up"></i>
+        <span>Keuangan</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Laporan</span>
+    </a>
+
+    <a>
+        <i class="fa-solid fa-gear"></i>
+        <span>Pengaturan</span>
+    </a>
 
 </div>
 

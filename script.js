@@ -1,81 +1,66 @@
-const form = document.querySelector("form");
+const API = "http://localhost:3000/barang";
 
-const namaBarang = document.querySelectorAll("input")[0];
-const kategori = document.querySelectorAll("input")[1];
-const hargaBeli = document.querySelectorAll("input")[2];
-const jumlah = document.querySelectorAll("input")[3];
-const hargaPcs = document.querySelectorAll("input")[4];
-const satuan = document.querySelector("select");
+const form = document.getElementById("formBarang");
 
-const tbody = document.querySelector("tbody");
+const tbody = document.getElementById("tbody");
 
-let dataBarang = [];
+const hargaBeli = document.getElementById("harga_beli");
+const jumlah = document.getElementById("jumlah");
+const hargaPerPcs = document.getElementById("harga_per_pcs");
 
 
-// =======================
-// Hitung Harga / Pcs
-// =======================
+// ======================
+// Hitung Harga/Pcs
+// ======================
 
-function hitungHargaPcs(){
+function hitungHarga(){
 
-    let harga = parseFloat(hargaBeli.value);
-    let qty = parseFloat(jumlah.value);
+    let harga = Number(hargaBeli.value);
+    let qty = Number(jumlah.value);
 
-    if(!isNaN(harga) && !isNaN(qty) && qty > 0){
+    if(harga && qty){
 
-        let hasil = Math.round(harga / qty);
-
-        hargaPcs.value = "Rp " + hasil.toLocaleString("id-ID");
-
-    }else{
-
-        hargaPcs.value = "";
+        hargaPerPcs.value = Math.round(harga / qty);
 
     }
 
 }
 
-hargaBeli.addEventListener("input", hitungHargaPcs);
-jumlah.addEventListener("input", hitungHargaPcs);
+hargaBeli.addEventListener("input", hitungHarga);
+jumlah.addEventListener("input", hitungHarga);
 
 
-// =======================
-// Render Tabel
-// =======================
+// ======================
+// Ambil Data
+// ======================
 
-function tampilData(){
+async function ambilData(){
 
-    tbody.innerHTML = "";
+    const res = await fetch(API);
 
-    dataBarang.forEach((barang,index)=>{
+    const data = await res.json();
 
-        tbody.innerHTML += `
+    tbody.innerHTML="";
+
+    data.forEach((barang,index)=>{
+
+        tbody.innerHTML +=`
 
         <tr>
 
             <td>${index+1}</td>
 
-            <td>${barang.nama}</td>
+            <td>${barang.nama_barang}</td>
 
             <td>${barang.kategori}</td>
 
-            <td>Rp ${barang.harga.toLocaleString("id-ID")}</td>
+            <td>Rp ${Number(barang.harga_beli).toLocaleString("id-ID")}</td>
 
             <td>${barang.jumlah}</td>
 
-            <td>Rp ${barang.hargaPcs.toLocaleString("id-ID")}</td>
+            <td>Rp ${Number(barang.harga_per_pcs).toLocaleString("id-ID")}</td>
 
-            <td>${barang.jumlah}</td>
-
-            <td>
-
-                <button onclick="hapusBarang(${index})">
-
-                    Hapus
-
-                </button>
-
-            </td>
+            <td>${barang.stok}</td>
 
         </tr>
 
@@ -85,50 +70,51 @@ function tampilData(){
 
 }
 
+ambilData();
 
-// =======================
-// Tambah Barang
-// =======================
 
-form.addEventListener("submit",(e)=>{
+// ======================
+// Simpan
+// ======================
+
+form.addEventListener("submit",async(e)=>{
 
     e.preventDefault();
 
-    let barang = {
+    const barang={
 
-        nama : namaBarang.value,
+        nama_barang:document.getElementById("nama_barang").value,
 
-        kategori : kategori.value,
+        kategori:document.getElementById("kategori").value,
 
-        harga : Number(hargaBeli.value),
+        harga_beli:Number(document.getElementById("harga_beli").value),
 
-        jumlah : Number(jumlah.value),
+        jumlah:Number(document.getElementById("jumlah").value),
 
-        satuan : satuan.value,
+        satuan:document.getElementById("satuan").value,
 
-        hargaPcs : Math.round(hargaBeli.value / jumlah.value)
+        harga_per_pcs:Number(document.getElementById("harga_per_pcs").value)
 
-    }
+    };
 
-    dataBarang.push(barang);
+    await fetch(API,{
 
-    tampilData();
+        method:"POST",
+
+        headers:{
+
+            "Content-Type":"application/json"
+
+        },
+
+        body:JSON.stringify(barang)
+
+    });
 
     form.reset();
 
-    hargaPcs.value="";
+    hargaPerPcs.value="";
+
+    ambilData();
 
 });
-
-
-// =======================
-// Hapus
-// =======================
-
-function hapusBarang(index){
-
-    dataBarang.splice(index,1);
-
-    tampilData();
-
-}

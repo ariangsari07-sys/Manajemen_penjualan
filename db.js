@@ -1,5 +1,4 @@
 const mysql = require("mysql2");
-
 const db = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -8,7 +7,6 @@ const db = mysql.createConnection({
 });
 
 db.connect((err) => {
-
     if(err){
         console.log("Koneksi Gagal");
         console.log(err);

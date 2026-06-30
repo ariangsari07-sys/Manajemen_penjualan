@@ -1,297 +1,153 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sistem Informasi Manajemen Usaha</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<div class="sidebar">
-
-    <div class="logo">
-
-    <i class="fa-solid fa-chart-simple"></i>
-
-    <div>
-
-        <h2>SIMP</h2>
-
-        <p>Perhitungan HPP</p>
-
-    </div>
-
-</div>
-    <div class="menu">
-
-        <a class="active">
-            <i class="fa-solid fa-box"></i>
-            <span>Data Barang</span>
-        </a>
-
-        <a>
-            <i class="fa-solid fa-boxes-stacked"></i>
-            <span>Data Produk</span>
-        </a>
-
-        <a>
-            <i class="fa-solid fa-file-signature"></i>
-            <span>Pesanan PO</span>
-        </a>
-
-        <a>
-            <i class="fa-solid fa-money-bill-trend-up"></i>
-            <span>Keuangan</span>
-        </a>
-
-        <a>
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Laporan</span>
-        </a>
-
-        <a>
-            <i class="fa-solid fa-gear"></i>
-            <span>Pengaturan</span>
-        </a>
-
-    </div>
-
-</div>
-
-<div class="main">
-
-    <div class="navbar">
-
-        <div>
-
-            <h1>Data Bahan</h1>
-<p>Kelola seluruh bahan baku untuk produk.</p>
-
-        </div>
-
-        <button id="btnTambah">
-
-            <i class="fa-solid fa-plus"></i>
-
-            Tambah Barang
-
-        </button>
-
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <i class="fa-solid fa-box"></i>
-
-            <h3>Total Barang</h3>
-
-            <h2>0</h2>
-
-        </div>
-
-        <div class="card">
-
-            <i class="fa-solid fa-layer-group"></i>
-
-            <h3>Total Kategori</h3>
-
-            <h2>0</h2>
-
-        </div>
-
-        <div class="card">
-
-            <i class="fa-solid fa-money-bill-wave"></i>
-
-            <h3>Total Modal</h3>
-
-            <h2>Rp0</h2>
-
-        </div>
-
-        <div class="card">
-
-            <i class="fa-solid fa-triangle-exclamation"></i>
-
-            <h3>Stok Menipis</h3>
-
-            <h2>0</h2>
-
-        </div>
-
-    </div>
-
-<div id="emptyState" class="empty-state">
-
-    <div class="empty-icon">
-        <i class="fa-solid fa-box-open"></i>
-    </div>
-
-    <h2>Belum Ada Data Bahan</h2>
-
-    <p>
-        Tambahkan bahan pertama untuk mulai menghitung HPP dan mengelola stok.
-    </p>
-
-    <button id="btnTambah2">
-
-        <i class="fa-solid fa-plus"></i>
-
-        Tambah Bahan
-
-    </button>
-
-</div>
-
-    <div class="table-box">
-
-        <div class="table-header">
-
-            <input
-                type="text"
-                placeholder="🔍 Cari barang..."
-            >
-
-        </div>
-
-        <table>
-
-            <thead>
-
-            <tr>
-
-                <th>No</th>
-
-                <th>Nama Barang</th>
-
-                <th>Kategori</th>
-
-                <th>Harga</th>
-
-                <th>Jumlah</th>
-
-                <th>Harga/Pcs</th>
-
-                <th>Stok</th>
-
-                <th>Aksi</th>
-
-            </tr>
-
-            </thead>
-
-            <tbody id="tbody">
-
-</tbody>
-        </table>
-
-    </div>
-
-</div>
-
-<!-- Modal -->
-
-<div class="modal">
-
-    <div class="modal-content">
-
-        <h2>🌸 Tambah Barang</h2>
-
-        <form id="formBarang">
-
-            <input id="nama_barang" placeholder="Nama Barang">
-
-            <input id="kategori" placeholder="Kategori">
-
-            <input id="harga_beli" type="number" placeholder="Harga Beli">
-
-            <input id="jumlah" type="number" placeholder="Jumlah">
-
-            <input id="satuan" placeholder="Satuan">
-
-            <input id="harga_per_pcs" readonly placeholder="Harga / pcs">
-
-            <div class="button-group">
-
-                <button type="button" class="batal">
-
-                    Batal
-
-                </button>
-
-                <button>
-
-                    Simpan
-
-                </button>
-
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Sistem Informasi Manajemen Usaha</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <div>
+                    <h2>SIMP</h2>
+                    <p>Perhitungan HPP</p>
+                </div>
             </div>
 
-        </form>
+            <!-- Menu -->
+            <div class="menu">
+                <a class="active">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Data Bahan</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Data Produk</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>Pesanan PO</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    <span>Keuangan</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Laporan</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Pengaturan</span>
+                </a>
+            </div>
+        </div>
 
-    </div>
+        <div class="main">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div>
+                    <h1>Data Bahan</h1>
+                    <p>Kelola seluruh bahan baku untuk produk.</p>
+                </div>
+                <button id="btnTambah">
+                    <i class="fa-solid fa-plus"></i> Tambah Bahan
+                </button>
+            </div>
 
-</div>
+            <!-- Card -->
+            <div class="cards">
+                <div class="card">
+                    <i class="fa-solid fa-box"></i>
+                    <h3>Total Baham</h3>
+                    <h2>0</h2>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h3>Total Kategori</h3>
+                    <h2>0</h2>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-money-bill-wave"></i>
+                    <h3>Total Modal</h3>
+                    <h2>Rp0</h2>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h3>Stok Menipis</h3>
+                    <h2>0</h2>
+                </div>
+            </div>
 
-<!-- Menu -->
+            <!-- Emtpty State-->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
 
-<div class="menu">
+                <h2>Belum Ada Data Bahan</h2>
+                <p>Tambahkan bahan pertama untuk mulai menghitung HPP dan mengelola stok.</p>
+                <button id="btnTambah2">
+                    <i class="fa-solid fa-plus"></i>Tambah Bahan
+                </button>
+            </div>
 
-    <a class="active">
-        <i class="fa-solid fa-boxes-stacked"></i>
-        <span>Data Bahan</span>
-    </a>
+            <!-- Table Box -->
+            <div class="table-box">
+                <div class="table-header">
+                    <input type="text" placeholder="🔍 Cari barang...">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Bahan</th>
+                            <th>Kategori</th>
+                            <th>Harga</th>
+                            <th>Jumlah</th>
+                            <th>Harga/Pcs</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"></tbody>
+                </table>
+            </div>
 
-    <a>
-        <i class="fa-solid fa-gift"></i>
-        <span>Data Produk</span>
-    </a>
+        </div>
 
-    <a>
-        <i class="fa-solid fa-calculator"></i>
-        <span>Perhitungan HPP</span>
-    </a>
+        <!-- Modal -->
+        <div class="modal">
+            <div class="modal-content">
+                <h2>Tambah Bahan</h2>
+                <form id="formBarang">
+                    <input id="nama_barang" placeholder="Nama Barang">
+                    <input id="kategori" placeholder="Kategori">
+                    <input id="harga_beli" type="number" placeholder="Harga Beli">
+                    <input id="jumlah" type="number" placeholder="Jumlah">
+                    <input id="satuan" placeholder="Satuan">
+                    <input id="harga_per_pcs" readonly placeholder="Harga / pcs">
 
-    <a>
-        <i class="fa-solid fa-file-signature"></i>
-        <span>Pesanan (PO)</span>
-    </a>
+                    <div class="button-group">
+                        <button type="button" class="batal">Batal</button>
+                        <button>Simpan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+c
+        <script src="script.js"></script>
 
-    <a>
-        <i class="fa-solid fa-money-bill-trend-up"></i>
-        <span>Keuangan</span>
-    </a>
-
-    <a>
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Laporan</span>
-    </a>
-
-    <a>
-        <i class="fa-solid fa-gear"></i>
-        <span>Pengaturan</span>
-    </a>
-
-</div>
-
-<script src="script.js"></script>
-
-</body>
+    </body>
 
 </html>

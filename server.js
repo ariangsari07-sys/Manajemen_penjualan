@@ -3,7 +3,6 @@ const cors = require("cors");
 const path = require("path");
 const db = require("./db");
 const barangRoutes = require("./routes/barang");
-
 const app = express();
 
 app.use(cors());

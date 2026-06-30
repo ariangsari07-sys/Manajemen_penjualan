@@ -69,7 +69,7 @@
             <div class="cards">
                 <div class="card">
                     <i class="fa-solid fa-box"></i>
-                    <h3>Total Baham</h3>
+                    <h3>Total Bahan</h3>
                     <h2>0</h2>
                 </div>
                 <div class="card">
@@ -127,16 +127,16 @@
         </div>
 
         <!-- Modal -->
-        <div class="modal">
+        <div id="modal" class="modal">
             <div class="modal-content">
                 <h2>Tambah Bahan</h2>
                 <form id="formBarang">
-                    <input id="nama_barang" placeholder="Nama Barang">
-                    <input id="kategori" placeholder="Kategori">
-                    <input id="harga_beli" type="number" placeholder="Harga Beli">
-                    <input id="jumlah" type="number" placeholder="Jumlah">
-                    <input id="satuan" placeholder="Satuan">
-                    <input id="harga_per_pcs" readonly placeholder="Harga / pcs">
+                    <input id="nama_barang" placeholder="Nama Barang" required>
+                    <input id="kategori" placeholder="Kategori" required>
+                    <input id="harga_beli" type="number" placeholder="Harga Beli" required>
+                    <input id="jumlah" type="number" placeholder="Jumlah" required>
+                    <input id="satuan" placeholder="Satuan" required>
+                    <input id="harga_per_pcs" readonly placeholder="Harga / pcs" required>
 
                     <div class="button-group">
                         <button type="button" class="batal">Batal</button>

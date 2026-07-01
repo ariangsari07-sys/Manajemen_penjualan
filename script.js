@@ -13,6 +13,10 @@ const form = document.getElementById("formBarang");
 const tbody = document.getElementById("tbody");
 const tableBox = document.querySelector(".table-box");
 const emptyState = document.getElementById("emptyState");
+const modal = document.getElementById("modal");
+const btnTambah = document.getElementById("btnTambah");
+const btnTambah2 = document.getElementById("btnTambah2");
+const btnBatal = document.querySelector(".batal");
 const hargaBeli = document.getElementById("harga_beli");
 const jumlah = document.getElementById("jumlah");
 const hargaPerPcs = document.getElementById("harga_per_pcs");
@@ -99,4 +103,17 @@ form.addEventListener("submit",async(e)=>{
     form.reset();
     hargaPerPcs.value="";
     ambilData();
+});
+
+// Modal
+btnTambah.addEventListener("click", () => {
+    modal.classList.add("show");
+});
+
+btnTambah2.addEventListener("click", () => {
+    modal.classList.add("show");
+});
+
+btnBatal.addEventListener("click", () => {
+    modal.classList.remove("show");
 });

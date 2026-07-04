@@ -65,65 +65,27 @@
                 </button>
             </div>
 
-            <!-- Card -->
-            <div class="cards">
-                <div class="card">
-                    <i class="fa-solid fa-box"></i>
-                    <h3>Total Bahan</h3>
-                    <h2>0</h2>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <h3>Total Kategori</h3>
-                    <h2>0</h2>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-money-bill-wave"></i>
-                    <h3>Total Modal</h3>
-                    <h2>Rp0</h2>
-                </div>
-                <div class="card">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <h3>Stok Menipis</h3>
-                    <h2>0</h2>
-                </div>
-            </div>
-
-            <!-- Emtpty State-->
-            <div id="emptyState" class="empty-state">
-                <div class="empty-icon">
-                    <i class="fa-solid fa-box-open"></i>
-                </div>
-
-                <h2>Belum Ada Data Bahan</h2>
-                <p>Tambahkan bahan pertama untuk mulai menghitung HPP dan mengelola stok.</p>
-                <button id="btnTambah2">
-                    <i class="fa-solid fa-plus"></i>Tambah Bahan
-                </button>
-            </div>
-
-            <!-- Table Box -->
-            <div class="table-box">
+            <!-- Tabel -->
+           <div class="table-box">
                 <div class="table-header">
-                    <input type="text" placeholder="🔍 Cari barang...">
+                    <input type="text" placeholder="🔍 Cari bahan...">
                 </div>
                 <table>
                     <thead>
                         <tr>
                             <th>No</th>
                             <th>Nama Bahan</th>
-                            <th>Kategori</th>
-                            <th>Harga</th>
+                            <th>Harga Beli</th>
                             <th>Jumlah</th>
                             <th>Harga/Pcs</th>
                             <th>Stok</th>
+                            <th>Status</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody id="tbody"></tbody>
                 </table>
             </div>
-
         </div>
 
         <!-- Modal -->
@@ -145,7 +107,7 @@
                 </form>
             </div>
         </div>
-        
+
         <script src="script.js"></script>
 
     </body>

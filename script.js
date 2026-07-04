@@ -12,7 +12,6 @@ const API = "http://localhost:3000/barang";
 const form = document.getElementById("formBarang");
 const tbody = document.getElementById("tbody");
 const tableBox = document.querySelector(".table-box");
-const emptyState = document.getElementById("emptyState");
 const modal = document.getElementById("modal");
 const btnTambah = document.getElementById("btnTambah");
 const btnTambah2 = document.getElementById("btnTambah2");
@@ -41,36 +40,40 @@ async function ambilData(){
         tbody.innerHTML = "";
 
         if(data.length === 0){
-            tableBox.style.display = "none";
-            emptyState.style.display = "flex";
             return;
         }
 
-        tableBox.style.display = "block";
-        emptyState.style.display = "none";
+    data.forEach((barang,index)=>{
+        let status = "🟢 Aman";
 
-        data.forEach((barang,index)=>{
-            tbody.innerHTML += `
+        if(barang.stok <= 10){
+            status = "🔴 Hampir Habis";
+
+        }else if(barang.stok <= 30){
+            status = "🟡 Menipis";
+        }
+
+        tbody.innerHTML += `
             <tr>
                 <td>${index+1}</td>
                 <td>${barang.nama_barang}</td>
-                <td>${barang.kategori}</td>
                 <td>Rp ${Number(barang.harga_beli).toLocaleString("id-ID")}</td>
                 <td>${barang.jumlah}</td>
-                <td>${barang.satuan}</td>
                 <td>Rp ${Number(barang.harga_per_pcs).toLocaleString("id-ID")}</td>
                 <td>${barang.stok}</td>
+                <td>${status}</td>
                 <td>
                     <button class="edit" data-id="${barang.id}">
                         <i class="fa-solid fa-pen"></i>
                     </button>
+
                     <button class="hapus" data-id="${barang.id}">
                         <i class="fa-solid fa-trash"></i>
                     </button>
                 </td>
             </tr>
-            `;
-        });
+        `;
+    });
 
     }catch(error){
         console.error("Gagal mengambil data:", error);

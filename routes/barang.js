@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
             harga_beli,
             jumlah,
             harga_per_pcs,
-            jumlah
+            stok
         ],
 
         (err) => {
@@ -63,7 +63,6 @@ router.put("/:id", (req, res) => {
     const { id } = req.params;
     const {
         nama_barang,
-        kategori,
         harga_beli,
         jumlah,
         satuan,
@@ -73,7 +72,6 @@ router.put("/:id", (req, res) => {
     db.query(
         `UPDATE barang SET
         nama_barang=?,
-        kategori=?,
         harga_beli=?,
         jumlah=?,
         satuan=?,
@@ -83,12 +81,11 @@ router.put("/:id", (req, res) => {
 
         [
             nama_barang,
-            kategori,
             harga_beli,
             jumlah,
             satuan,
             harga_per_pcs,
-            jumlah,
+            stok,
             id
         ],
 

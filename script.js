@@ -14,7 +14,6 @@ const tbody = document.getElementById("tbody");
 const tableBox = document.querySelector(".table-box");
 const modal = document.getElementById("modal");
 const btnTambah = document.getElementById("btnTambah");
-const btnTambah2 = document.getElementById("btnTambah2");
 const btnBatal = document.querySelector(".batal");
 const hargaBeli = document.getElementById("harga_beli");
 const jumlah = document.getElementById("jumlah");
@@ -87,10 +86,8 @@ form.addEventListener("submit",async(e)=>{
     e.preventDefault();
     const barang={
         nama_barang:document.getElementById("nama_barang").value,
-        kategori:document.getElementById("kategori").value,
         harga_beli:Number(document.getElementById("harga_beli").value),
         jumlah:Number(document.getElementById("jumlah").value),
-        satuan:document.getElementById("satuan").value,
         harga_per_pcs:Number(document.getElementById("harga_per_pcs").value)
     };
 
@@ -110,10 +107,6 @@ form.addEventListener("submit",async(e)=>{
 
 // Modal
 btnTambah.addEventListener("click", () => {
-    modal.classList.add("show");
-});
-
-btnTambah2.addEventListener("click", () => {
     modal.classList.add("show");
 });
 

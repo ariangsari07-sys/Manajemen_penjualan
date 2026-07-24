@@ -18,30 +18,30 @@ router.get("/", (req, res) => {
 
 // Tambah Barang
 router.post("/", (req, res) => {
+
     const {
         nama_barang,
-        kategori,
         harga_beli,
         jumlah,
-        satuan,
         harga_per_pcs
     } = req.body;
 
     db.query(
+
         `INSERT INTO barang
-        (nama_barang,kategori,harga_beli,jumlah,satuan,harga_per_pcs,stok)
-        VALUES(?,?,?,?,?,?,?)`,
+        (nama_barang,harga_beli,jumlah,harga_per_pcs,stok)
+        VALUES(?,?,?,?,?)`,
+
         [
             nama_barang,
-            kategori,
             harga_beli,
             jumlah,
-            satuan,
             harga_per_pcs,
             jumlah
         ],
 
         (err) => {
+
             if (err) {
                 return res.status(500).json(err);
             }
@@ -49,8 +49,11 @@ router.post("/", (req, res) => {
             res.json({
                 message: "Barang berhasil ditambahkan"
             });
+
         }
+
     );
+
 });
 
 module.exports = router;

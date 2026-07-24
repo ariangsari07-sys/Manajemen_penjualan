@@ -24,6 +24,7 @@ router.post("/", (req, res) => {
         harga_beli,
         jumlah,
         harga_per_pcs
+        stok
     } = req.body;
 
     db.query(

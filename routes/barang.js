@@ -23,7 +23,7 @@ router.post("/", (req, res) => {
         nama_barang,
         harga_beli,
         jumlah,
-        harga_per_pcs
+        harga_per_pcs,
         stok
     } = req.body;
 
@@ -67,7 +67,8 @@ router.put("/:id", (req, res) => {
         harga_beli,
         jumlah,
         satuan,
-        harga_per_pcs
+        harga_per_pcs,
+        stok
     } = req.body;
 
     db.query(

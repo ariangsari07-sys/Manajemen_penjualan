@@ -45,7 +45,10 @@ async function ambilData(){
     data.forEach((barang,index)=>{
         let status = "🟢 Aman";
 
-        if(barang.stok <= 10){
+        if(barang.stok == 0){
+            status = "⚫ Habis"
+        }
+        else if(barang.stok <= 10){
             status = "🔴 Hampir Habis";
 
         }else if(barang.stok <= 30){
@@ -80,6 +83,31 @@ async function ambilData(){
 }
 
 ambilData();
+
+// Edit
+
+tbody.addEventListener("click", async (e) => {
+
+    if (!e.target.closest(".edit")) return;
+
+    const id = e.target.closest(".edit").dataset.id;
+
+    const res = await fetch(API);
+    const data = await res.json();
+
+    const barang = data.find(item => item.id == id);
+
+    if (!barang) return;
+
+    document.getElementById("nama_barang").value = barang.nama_barang;
+    document.getElementById("harga_beli").value = barang.harga_beli;
+    document.getElementById("jumlah").value = barang.jumlah;
+    document.getElementById("harga_per_pcs").value = barang.harga_per_pcs;
+    document.getElementById("stok").value = barang.stok;
+
+    modal.classList.add("show");
+
+});
 
 // Simpan
 form.addEventListener("submit",async(e)=>{

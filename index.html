@@ -93,11 +93,20 @@
             <div class="modal-content">
                 <h2>Tambah Bahan</h2>
                 <form id="formBarang">
-                    <input id="nama_barang" placeholder="Nama Bahan" required>
-                    <input id="harga_beli" type="number" placeholder="Harga Beli" required>
-                    <input id="jumlah" type="number" placeholder="Jumlah" required>
-                    <input id="harga_per_pcs" readonly placeholder="Harga / pcs" required>
-                    <input id="stok" type="number" placeholder="stok" required>
+                    <label for="nama_barang">Nama Bahan</label>
+                    <input id="nama_barang" placeholder="Masukkan nama bahan" required>
+
+                    <label for="harga_beli">Harga Beli</label>
+                    <input id="harga_beli" type="text" placeholder="Rp0">
+
+                    <label for="jumlah">Jumlah</label>
+                    <input id="jumlah" type="number" placeholder="Jumlah isi" required>
+
+                    <label for="harga_per_pcs">Harga / Pcs</label>
+                    <input id="harga_per_pcs" type="text" readonly placeholder="Rp0">
+
+                    <label for="stok">Stok</label>
+                    <input id="stok" type="number" placeholder="Masukkan stok" required>
 
                     <div class="button-group">
                         <button type="button" class="batal">Batal</button>

@@ -19,16 +19,50 @@ const hargaBeli = document.getElementById("harga_beli");
 const jumlah = document.getElementById("jumlah");
 const hargaPerPcs = document.getElementById("harga_per_pcs");
 let editId = null;
+
 // Hitung Harga/Pcs
-function hitungHarga(){
-    let harga = Number(hargaBeli.value);
-    let qty = Number(jumlah.value);
-    if(harga && qty){
-        hargaPerPcs.value = Math.round(harga / qty);
-    }
+function formatRupiah(angka){
+
+    angka = angka.replace(/\D/g, "");
+
+    if(angka === "") return "";
+
+    return "Rp" + Number(angka).toLocaleString("id-ID");
+
 }
 
-hargaBeli.addEventListener("input", hitungHarga);
+function hitungHarga(){
+
+    let harga = Number(
+        hargaBeli.value.replace(/\D/g,"")
+    );
+
+    let qty = Number(jumlah.value);
+
+    if(harga && qty){
+
+        hargaPerPcs.value = formatRupiah(
+            Math.round(harga / qty).toString()
+        );
+
+    }else{
+
+        hargaPerPcs.value = "";
+
+    }
+
+}
+
+hargaBeli.addEventListener("input", function(){
+
+    const angka = this.value.replace(/\D/g, "");
+
+    this.value = formatRupiah(angka);
+
+    hitungHarga();
+
+});
+
 jumlah.addEventListener("input", hitungHarga);
 
 // Ambil Data
@@ -108,10 +142,7 @@ tbody.addEventListener("click", async (e) => {
     editId = barang.id;
 });
 
-// ======================
 // Hapus Barang
-// ======================
-
 tbody.addEventListener("click", async (e) => {
 
     if (!e.target.closest(".hapus")) return;
@@ -138,7 +169,7 @@ form.addEventListener("submit", async (e) => {
 
     const barang = {
         nama_barang: document.getElementById("nama_barang").value,
-        harga_beli: Number(document.getElementById("harga_beli").value),
+        harga_beli: Number(document.getElementById("harga_beli").value.replace(/\D/g,"")),
         jumlah: Number(document.getElementById("jumlah").value),
         harga_per_pcs: Number(document.getElementById("harga_per_pcs").value),
         stok: Number(document.getElementById("stok").value)

@@ -366,19 +366,28 @@ tbody td:last-child{
 .modal-content form{
     display:flex;
     flex-direction:column;
-    gap:15px;
+    gap:10px;
+}
+
+.modal-content label{
+    display:block;
+    margin:0;
+    font-size:13px;
+    font-weight:600;
+    color:#444;
 }
 
 .modal-content input{
-    padding:14px 16px;
-    border:1px solid #ddd;
+    width:100%;
+    padding:12px 14px;
+    border:1px solid #d9d9d9;
     border-radius:10px;
-    outline:none;
-    font-size:15px;
+    margin:0;
 }
 
 .modal-content input:focus{
     border-color:#7B2034;
+    outline:none;
 }
 
 .button-group{

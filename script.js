@@ -18,7 +18,7 @@ const btnBatal = document.querySelector(".batal");
 const hargaBeli = document.getElementById("harga_beli");
 const jumlah = document.getElementById("jumlah");
 const hargaPerPcs = document.getElementById("harga_per_pcs");
-
+let editId = null;
 // Hitung Harga/Pcs
 function hitungHarga(){
     let harga = Number(hargaBeli.value);
@@ -85,7 +85,6 @@ async function ambilData(){
 ambilData();
 
 // Edit
-
 tbody.addEventListener("click", async (e) => {
 
     if (!e.target.closest(".edit")) return;
@@ -106,31 +105,54 @@ tbody.addEventListener("click", async (e) => {
     document.getElementById("stok").value = barang.stok;
 
     modal.classList.add("show");
-
+    editId = barang.id;
 });
 
 // Simpan
-form.addEventListener("submit",async(e)=>{
+form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    const barang={
-        nama_barang:document.getElementById("nama_barang").value,
-        harga_beli:Number(document.getElementById("harga_beli").value),
-        jumlah:Number(document.getElementById("jumlah").value),
-        harga_per_pcs:Number(document.getElementById("harga_per_pcs").value),
+
+    const barang = {
+        nama_barang: document.getElementById("nama_barang").value,
+        harga_beli: Number(document.getElementById("harga_beli").value),
+        jumlah: Number(document.getElementById("jumlah").value),
+        harga_per_pcs: Number(document.getElementById("harga_per_pcs").value),
         stok: Number(document.getElementById("stok").value)
     };
 
-    await fetch(API,{
-        method:"POST",
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(barang)
-    });
+    if (editId == null) {
 
-    alert("Data berhasil ditambahkan.");
+        // Tambah data
+        await fetch(API, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(barang)
+        });
+
+        alert("Data berhasil ditambahkan.");
+
+    } else {
+
+        // Edit data
+        await fetch(`${API}/${editId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(barang)
+        });
+
+        alert("Data berhasil diperbarui.");
+
+        editId = null;
+    }
+
     form.reset();
-    hargaPerPcs.value="";
+    hargaPerPcs.value = "";
+    modal.classList.remove("show");
+
     ambilData();
 });
 
@@ -139,6 +161,9 @@ btnTambah.addEventListener("click", () => {
     modal.classList.add("show");
 });
 
+// Batal
 btnBatal.addEventListener("click", () => {
+    form.reset();
+    hargaPerPcs.value = "";
     modal.classList.remove("show");
 });

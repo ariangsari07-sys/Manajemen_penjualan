@@ -108,6 +108,30 @@ tbody.addEventListener("click", async (e) => {
     editId = barang.id;
 });
 
+// ======================
+// Hapus Barang
+// ======================
+
+tbody.addEventListener("click", async (e) => {
+
+    if (!e.target.closest(".hapus")) return;
+
+    const id = e.target.closest(".hapus").dataset.id;
+
+    const yakin = confirm("Yakin ingin menghapus bahan ini?");
+
+    if (!yakin) return;
+
+    await fetch(`${API}/${id}`, {
+        method: "DELETE"
+    });
+
+    alert("Data berhasil dihapus.");
+
+    ambilData();
+
+});
+
 // Simpan
 form.addEventListener("submit", async (e) => {
     e.preventDefault();

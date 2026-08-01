@@ -61,22 +61,23 @@ module.exports = router;
 
 // Edit Barang
 router.put("/:id", (req, res) => {
+
     const { id } = req.params;
+
     const {
         nama_barang,
         harga_beli,
         jumlah,
-        satuan,
         harga_per_pcs,
         stok
     } = req.body;
 
     db.query(
+
         `UPDATE barang SET
         nama_barang=?,
         harga_beli=?,
         jumlah=?,
-        satuan=?,
         harga_per_pcs=?,
         stok=?
         WHERE id=?`,
@@ -85,22 +86,25 @@ router.put("/:id", (req, res) => {
             nama_barang,
             harga_beli,
             jumlah,
-            satuan,
             harga_per_pcs,
             stok,
             id
         ],
 
         (err) => {
-            if (err) {
+
+            if(err){
                 return res.status(500).json(err);
             }
 
             res.json({
-                message: "Barang berhasil diupdate"
+                message:"Barang berhasil diupdate"
             });
+
         }
+
     );
+
 });
 
 // Hapus Barang

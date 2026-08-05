@@ -414,3 +414,69 @@ tbody td:last-child{
     color:white;
 }
 
+/* ================= DATA PRODUK ================= */
+
+#tambahBahan{
+    width:100%;
+    margin-top:15px;
+    padding:12px;
+    border:2px dashed #7B2034;
+    border-radius:10px;
+    background:white;
+    color:#7B2034;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+}
+
+#tambahBahan:hover{
+    background:#7B2034;
+    color:white;
+}
+
+.modal-content hr{
+    border:none;
+    border-top:1px solid #E5E5E5;
+    margin:20px 0;
+}
+
+.modal-content h3{
+    font-size:16px;
+    color:#333;
+    margin-bottom:10px;
+}
+
+#listBahan{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.bahan-item{
+    padding:15px;
+    border:1px solid #E5E5E5;
+    border-radius:12px;
+    background:#FAFAFA;
+}
+
+.bahan-item select,
+.bahan-item input{
+    width:100%;
+    margin-top:8px;
+}
+
+.bahan-item button{
+    margin-top:12px;
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#DC2626;
+    color:white;
+    cursor:pointer;
+}
+
+.bahan-item button:hover{
+    background:#B91C1C;
+}
+

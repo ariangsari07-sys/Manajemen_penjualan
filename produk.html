@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Data produk</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <i class="fa-solid fa-chart-simple"></i>
+                <div>
+                    <h2>SIMP</h2>
+                    <p>Perhitungan HPP</p>
+                </div>
+            </div>
+
+            <!-- Menu -->
+            <div class="menu">
+                <a href="index.html">
+                    <i class="fa-solid fa-box"></i>
+                    <span>Data Bahan</span>
+                </a>
+
+                <a href="produk.html" class="active">
+                    <i class="fa-solid fa-boxes-stacked"></i>
+                    <span>Data Produk</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-file-signature"></i>
+                    <span>Pesanan PO</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-money-bill-trend-up"></i>
+                    <span>Keuangan</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Laporan</span>
+                </a>
+                <a>
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Pengaturan</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="main">
+            <!-- Navbar -->
+            <div class="navbar">
+                <div>
+                    <h1>Data Produk</h1>
+                    <p>Kelola seluruh produk.</p>
+                </div>
+                <button id="btnTambahProduk">
+                    <i class="fa-solid fa-plus"></i>Tambah Produk
+                </button>
+            </div>
+
+            <!-- Tabel -->
+           <div class="table-box">
+                <div class="table-header">
+                    <input type="text" placeholder="🔍 Cari produk...">
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Produk</th>
+                            <th>Modal</th>
+                            <th>Harga Jual</th>
+                            <th>Laba</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tbodyProduk"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="modalProduk" class="modal">
+            <div class="modal-content">
+                <h2>Tambah Produk</h2>
+                <form id="formProduk">
+
+                    <label>Nama Produk</label>
+                    <input id="nama_produk" placeholder="Masukkan nama produk" required>
+
+                    <label>Harga Jual</label>
+                    <input id="harga_jual" type="text" placeholder="Rp0" required>
+
+                    <hr>
+                    <h3>Komposisi Bahan</h3>
+                    <div id="listBahan"></div>
+
+                    <button type="button" id="tambahBahan">
+                        <i class="fa-solid fa-plus"></i> Tambah Bahan
+                    </button>
+
+                    <hr>
+                    <label>Modal Produk</label>
+                    <input id="modal_produk" type="text" readonly placeholder="Rp0">
+
+                    <label>Laba</label>
+                    <input id="laba" type="text" readonly placeholder="Rp0">
+
+                    <label>Stok Produk</label>
+                    <input id="stok_produk" type="number" placeholder="Masukkan stok">
+
+                    <div class="button-group">
+                        <button type="button" class="batal">Batal</button>
+                        <button type="submit">Simpan</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+        <script src="produk.js"></script>
+
+    </body>
+
+</html>

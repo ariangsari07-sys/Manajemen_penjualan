@@ -133,9 +133,9 @@ tbody.addEventListener("click", async (e) => {
     if (!barang) return;
 
     document.getElementById("nama_barang").value = barang.nama_barang;
-    document.getElementById("harga_beli").value = barang.harga_beli;
+    document.getElementById("harga_beli").value = formatRupiah(barang.harga_beli.toString());
     document.getElementById("jumlah").value = barang.jumlah;
-    document.getElementById("harga_per_pcs").value = barang.harga_per_pcs;
+    document.getElementById("harga_per_pcs").value = formatRupiah(barang.harga_per_pcs.toString());
     document.getElementById("stok").value = barang.stok;
 
     modal.classList.add("show");
@@ -171,7 +171,7 @@ form.addEventListener("submit", async (e) => {
         nama_barang: document.getElementById("nama_barang").value,
         harga_beli: Number(document.getElementById("harga_beli").value.replace(/\D/g,"")),
         jumlah: Number(document.getElementById("jumlah").value),
-        harga_per_pcs: Number(document.getElementById("harga_per_pcs").value),
+        harga_per_pcs: Number(document.getElementById("harga_per_pcs").value.replace(/\D/g,"")),
         stok: Number(document.getElementById("stok").value)
     };
 

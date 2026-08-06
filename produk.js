@@ -30,3 +30,43 @@ btnBatal.addEventListener("click", () => {
     listBahan.innerHTML = "";
     modal.classList.remove("show");
 });
+
+const btnTambahBahan = document.getElementById("tambahBahan");
+
+btnTambahBahan.addEventListener("click", () => {
+    tambahBarisBahan();
+});
+
+function tambahBarisBahan(){
+
+    const div = document.createElement("div");
+
+    div.className = "bahan-item";
+
+    div.innerHTML = `
+        <label>Nama Bahan</label>
+
+        <select class="barang">
+            <option value="">-- Pilih Bahan --</option>
+        </select>
+
+        <label>Jumlah Dipakai</label>
+
+        <input
+            type="number"
+            class="jumlah"
+            min="1"
+            placeholder="Masukkan jumlah">
+
+        <button type="button" class="hapusBahan">
+            Hapus
+        </button>
+    `;
+
+    listBahan.appendChild(div);
+
+    div.querySelector(".hapusBahan").addEventListener("click", () => {
+        div.remove();
+    });
+
+}

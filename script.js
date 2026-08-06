@@ -171,7 +171,7 @@ form.addEventListener("submit", async (e) => {
         nama_barang: document.getElementById("nama_barang").value,
         harga_beli: Number(document.getElementById("harga_beli").value.replace(/\D/g,"")),
         jumlah: Number(document.getElementById("jumlah").value),
-        harga_per_pcs: Number(document.getElementById("harga_per_pcs").value.replace(/\D/g,"")),
+        harga_per_pcs: Number(document.getElementById("harga_per_pcs").value.replace(/\D/g, "")),
         stok: Number(document.getElementById("stok").value)
     };
 

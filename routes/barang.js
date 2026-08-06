@@ -5,7 +5,7 @@ const db = require("../db");
 // Ambil Semua Barang
 router.get("/", (req, res) => {
     db.query(
-        "SELECT * FROM barang ORDER BY id DESC",
+        "SELECT * FROM barang ORDER BY id ASC",
         (err, result) => {
             if (err) {
                 return res.status(500).json(err);

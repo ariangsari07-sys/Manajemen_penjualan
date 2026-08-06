@@ -352,10 +352,12 @@ tbody td:last-child{
 
 .modal-content{
     width:500px;
+    max-height:90vh;
     background:white;
     border-radius:20px;
     padding:30px;
     box-shadow:0 20px 60px rgba(0,0,0,.2);
+    overflow-y:auto;
 }
 
 .modal-content h2{
@@ -388,6 +390,24 @@ tbody td:last-child{
 .modal-content input:focus{
     border-color:#7B2034;
     outline:none;
+}
+
+.modal-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.modal-content::-webkit-scrollbar-track{
+    background:#F2F2F2;
+    border-radius:10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background:#7B2034;
+    border-radius:10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover{
+    background:#5F1828;
 }
 
 .button-group{

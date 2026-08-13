@@ -154,6 +154,50 @@
             </div>
         </div>
 
+        <!-- Modal Penyesuaian Stok -->
+        <div id="modalPenyesuaian" class="modal">
+            <div class="modal-content">
+
+                <h2>Penyesuaian Stok</h2>
+
+                <form id="formPenyesuaian">
+
+                    <label>Nama Bahan</label>
+                    <input id="namaPenyesuaian" type="text" readonly>
+
+                    <label>Stok Saat Ini</label>
+                    <input id="stokPenyesuaian" type="number" readonly>
+
+                    <label>Alasan</label>
+                    <select id="alasanPenyesuaian" required>
+                        <option value="">-- Pilih Alasan --</option>
+                        <option value="Rusak">🗑️ Rusak</option>
+                        <option value="Sampel">🧪 Sampel</option>
+                        <option value="Pemakaian Pribadi">🏠 Pemakaian Pribadi</option>
+                        <option value="Lainnya">📝 Lainnya</option>
+                    </select>
+
+                    <div id="keteranganBox" style="display: none;">
+                        <label>Keterangan</label>
+                        <input
+                            id="keteranganPenyesuaian"
+                            type="text"
+                            placeholder="Masukkan keterangan">
+                    </div>
+
+                    <label>Jumlah yang Dikurangi</label>
+                    <input id="jumlahPenyesuaian" type="number" min="1" placeholder="Masukkan jumlah" required>
+
+                    <div class="button-group">
+                        <button type="button" class="batalPenyesuaian">Batal</button>
+                        <button type="submit">Simpan</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
         <script src="script.js"></script>
 
     </body>

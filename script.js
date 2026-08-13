@@ -29,6 +29,17 @@ const hargaPembelian = document.getElementById("hargaPembelian");
 const btnBatalTambahStok = document.querySelector(".batalTambahStok");
 let tambahStokId = null;
 
+const modalPenyesuaian = document.getElementById("modalPenyesuaian");
+const formPenyesuaian = document.getElementById("formPenyesuaian");
+const namaPenyesuaian = document.getElementById("namaPenyesuaian");
+const stokPenyesuaian = document.getElementById("stokPenyesuaian");
+const alasanPenyesuaian = document.getElementById("alasanPenyesuaian");
+const keteranganBox = document.getElementById("keteranganBox");
+const keteranganPenyesuaian = document.getElementById("keteranganPenyesuaian");
+const jumlahPenyesuaian = document.getElementById("jumlahPenyesuaian");
+const btnBatalPenyesuaian = document.querySelector(".batalPenyesuaian");
+let penyesuaianId = null;
+
 // Hitung Harga/Pcs
 function formatRupiah(angka){
 
@@ -169,10 +180,8 @@ tbody.addEventListener("click", async (e) => {
     if (!e.target.closest(".menu-edit")) return;
 
     const id = e.target.closest(".menu-edit").dataset.id;
-
     const res = await fetch(API);
     const data = await res.json();
-
     const barang = data.find(item => item.id == id);
 
     if (!barang) return;
@@ -282,13 +291,56 @@ btnBatalTambahStok.addEventListener("click", () => {
     tambahStokId = null;
 });
 
+// Penyesuaian Stok
+tbody.addEventListener("click", async (e) => {
+
+    if (!e.target.closest(".penyesuaian-stok")) return;
+
+    const id =
+        e.target.closest(".penyesuaian-stok").dataset.id;
+
+    const res = await fetch(API);
+    const data = await res.json();
+    const barang = data.find(item => item.id == id);
+
+    if (!barang) return;
+
+    penyesuaianId = barang.id;
+    namaPenyesuaian.value = barang.nama_barang;
+    stokPenyesuaian.value = barang.stok;
+    alasanPenyesuaian.value = "";
+    keteranganPenyesuaian.value = "";
+    jumlahPenyesuaian.value = "";
+    keteranganBox.style.display = "none";
+    modalPenyesuaian.classList.add("show");
+});
+
+alasanPenyesuaian.addEventListener("change", () => {
+    if (alasanPenyesuaian.value === "Lainnya") {
+        keteranganBox.style.display = "block";
+        keteranganPenyesuaian.required = true;
+
+    } else {
+        keteranganBox.style.display = "none";
+        keteranganPenyesuaian.required = false;
+        keteranganPenyesuaian.value = "";
+    }
+});
+
+btnBatalPenyesuaian.addEventListener("click", () => {
+    formPenyesuaian.reset();
+    keteranganBox.style.display = "none";
+    keteranganPenyesuaian.required = false;
+    modalPenyesuaian.classList.remove("show");
+    penyesuaianId = null;
+});
+
 // Hapus Barang
 tbody.addEventListener("click", async (e) => {
 
     if (!e.target.closest(".menu-hapus")) return;
 
     const id = e.target.closest(".menu-hapus").dataset.id;
-
     const yakin = confirm("Yakin ingin menghapus bahan ini?");
 
     if (!yakin) return;
@@ -298,9 +350,7 @@ tbody.addEventListener("click", async (e) => {
     });
 
     alert("Data berhasil dihapus.");
-
     ambilData();
-
 });
 
 // Simpan

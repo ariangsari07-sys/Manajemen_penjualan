@@ -15,6 +15,7 @@
     <body>
         <!-- Sidebar -->
         <div class="sidebar">
+
             <!-- Logo -->
             <div class="logo">
                 <i class="fa-solid fa-chart-simple"></i>
@@ -60,6 +61,7 @@
         </div>
 
         <div class="main">
+            
             <!-- Navbar -->
             <div class="navbar">
                 <div>
@@ -119,6 +121,36 @@
                         <button>Simpan</button>
                     </div>
                 </form>
+            </div>
+        </div>
+
+        <!-- Modal Tambah Stok -->
+        <div id="modalTambahStok" class="modal">
+            <div class="modal-content">
+
+                <h2>Tambah Stok</h2>
+
+                <form id="formTambahStok">
+
+                    <label>Nama Bahan</label>
+                    <input id="namaStok" type="text" readonly>
+
+                    <label>Stok Saat Ini</label>
+                    <input id="stokSaatIni" type="number" readonly>
+
+                    <label>Jumlah Dibeli</label>
+                    <input id="jumlahBeli" type="number" min="1" placeholder="Masukkan jumlah" required>
+
+                    <label>Harga Pembelian</label>
+                    <input id="hargaPembelian" type="text" placeholder="Rp0" required>
+
+                    <div class="button-group">
+                        <button type="button" class="batalTambahStok">Batal</button>
+                        <button type="submit">Simpan</button>
+                    </div>
+
+                </form>
+
             </div>
         </div>
 

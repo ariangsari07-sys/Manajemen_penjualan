@@ -136,6 +136,81 @@ body{
     transform:translateY(-2px);
 }
 
+/* ================= AKSI MENU ================= */
+.aksi-menu{
+    position: relative;
+}
+
+.btn-menu{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 6px 10px;
+}
+
+.dropdown-menu{
+    display: none;
+    position: absolute;
+    top: 35px;
+    right: 0;
+    background: #fff;
+    min-width: 180px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    overflow: hidden;
+    z-index: 999;
+}
+
+.dropdown-menu.show{
+    display: block;
+}
+
+.dropdown-menu button{
+    width: 100%;
+    border: none;
+    background: white;
+    text-align: left;
+    padding: 12px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-menu button:hover{
+    background: #f3f3f3;
+}
+
+/* ================= TAB PRODUK ================= */
+
+.produk-tab{
+    display:flex;
+    gap:25px;
+    margin-bottom:20px;
+    border-bottom:1px solid #E8E8E8;
+}
+
+.tab{
+    background:none;
+    border:none;
+    padding:15px 0;
+    font-size:15px;
+    color:#999;
+    cursor:pointer;
+    font-weight:500;
+    transition:.3s;
+    border-bottom:3px solid transparent;
+}
+
+.tab:hover{
+    color:#7B2034;
+}
+
+.tab.active{
+    color:#1E1F25;
+    font-weight:700;
+    border-bottom:3px solid #7B2034;
+}
+
 /* ================= CARD ================= */
 .cards{
     display:grid;

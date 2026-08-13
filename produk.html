@@ -15,6 +15,7 @@
     <body>
         <!-- Sidebar -->
         <div class="sidebar">
+
             <!-- Logo -->
             <div class="logo">
                 <i class="fa-solid fa-chart-simple"></i>
@@ -55,37 +56,46 @@
         </div>
 
         <div class="main">
+
             <!-- Navbar -->
             <div class="navbar">
                 <div>
                     <h1>Data Produk</h1>
                     <p>Kelola seluruh produk.</p>
                 </div>
+
                 <button id="btnTambahProduk">
-                    <i class="fa-solid fa-plus"></i>Tambah Produk
+                    <i class="fa-solid fa-plus"></i>
+                    Tambah Produk
                 </button>
             </div>
 
-            <!-- Tabel -->
-           <div class="table-box">
-                <div class="table-header">
-                    <input type="text" placeholder="🔍 Cari produk...">
-                </div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Produk</th>
-                            <th>Modal</th>
-                            <th>Harga Jual</th>
-                            <th>Laba</th>
-                            <th>Stok</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </thead>
+            <!-- Tab -->
+            <div class="produk-tab">
 
+                <button class="tab active" id="btnCustom">
+                    Custom
+                </button>
+
+                <button class="tab" id="btnPaket">
+                    Paket
+                </button>
+
+            </div>
+
+            <!-- Tabel -->
+            <div class="table-box">
+                <div class="table-header">
+                    <input
+                        type="text"
+                        placeholder="🔍 Cari produk...">
+                </div>
+
+                <table>
+                    <thead id="theadProduk"></thead>
                     <tbody id="tbodyProduk"></tbody>
                 </table>
+
             </div>
         </div>
 
@@ -115,9 +125,6 @@
 
                     <label>Laba</label>
                     <input id="laba" type="text" readonly placeholder="Rp0">
-
-                    <label>Stok Produk</label>
-                    <input id="stok_produk" type="number" placeholder="Masukkan stok">
 
                     <div class="button-group">
                         <button type="button" class="batal">Batal</button>

@@ -20,6 +20,14 @@ const listBahan = document.getElementById("listBahan");
 const form = document.getElementById("formProduk");
 const btnTambahBahan = document.getElementById("tambahBahan");
 
+// ================= TAB =================
+const btnCustom = document.getElementById("btnCustom");
+const btnPaket = document.getElementById("btnPaket");
+const thead = document.getElementById("theadProduk");
+const tbody = document.getElementById("tbodyProduk");
+
+let jenisProduk = "custom";
+
 // Menyimpan semua data bahan
 let semuaBahan = [];
 
@@ -41,6 +49,29 @@ async function ambilBahan() {
 }
 
 ambilBahan();
+
+// ================= TAB =================
+btnCustom.addEventListener("click", () => {
+
+    jenisProduk = "custom";
+
+    btnCustom.classList.add("active");
+    btnPaket.classList.remove("active");
+
+    tampilCustom();
+
+});
+
+btnPaket.addEventListener("click", () => {
+
+    jenisProduk = "paket";
+
+    btnPaket.classList.add("active");
+    btnCustom.classList.remove("active");
+
+    tampilPaket();
+
+});
 
 // ================= BUKA MODAL =================
 btnTambah.addEventListener("click", () => {
@@ -118,3 +149,41 @@ function tambahBarisBahan() {
     });
 
 }
+
+// ================= CUSTOM =================
+function tampilCustom() {
+
+    thead.innerHTML = `
+        <tr>
+            <th>No</th>
+            <th>Nama Produk</th>
+            <th>Modal / Tangkai</th>
+            <th>Jumlah Bahan</th>
+            <th>Aksi</th>
+        </tr>
+    `;
+
+    tbody.innerHTML = "";
+
+}
+
+// ================= PAKET =================
+function tampilPaket() {
+
+    thead.innerHTML = `
+        <tr>
+            <th>No</th>
+            <th>Nama Paket</th>
+            <th>Modal</th>
+            <th>Harga Jual</th>
+            <th>Laba</th>
+            <th>Aksi</th>
+        </tr>
+    `;
+
+    tbody.innerHTML = "";
+
+}
+
+// ================= AWAL =================
+tampilCustom();

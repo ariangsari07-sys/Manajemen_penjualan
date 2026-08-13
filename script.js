@@ -20,6 +20,15 @@ const jumlah = document.getElementById("jumlah");
 const hargaPerPcs = document.getElementById("harga_per_pcs");
 let editId = null;
 
+const modalTambahStok = document.getElementById("modalTambahStok");
+const formTambahStok = document.getElementById("formTambahStok");
+const namaStok = document.getElementById("namaStok");
+const stokSaatIni = document.getElementById("stokSaatIni");
+const jumlahBeli = document.getElementById("jumlahBeli");
+const hargaPembelian = document.getElementById("hargaPembelian");
+const btnBatalTambahStok = document.querySelector(".batalTambahStok");
+let tambahStokId = null;
+
 // Hitung Harga/Pcs
 function formatRupiah(angka){
 
@@ -99,13 +108,34 @@ async function ambilData(){
                 <td>${barang.stok}</td>
                 <td>${status}</td>
                 <td>
-                    <button class="edit" data-id="${barang.id}">
-                        <i class="fa-solid fa-pen"></i>
-                    </button>
+                    <div class="aksi-menu">
 
-                    <button class="hapus" data-id="${barang.id}">
-                        <i class="fa-solid fa-trash"></i>
-                    </button>
+                        <button class="btn-menu">
+                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                        </button>
+
+                        <div class="dropdown-menu">
+
+                            <button class="menu-edit" data-id="${barang.id}">
+                                ✏️ Edit
+                            </button>
+
+                            <button class="tambah-stok" data-id="${barang.id}">
+                                📦 Tambah Stok
+                            </button>
+
+                            <button class="penyesuaian-stok" data-id="${barang.id}">
+                                📉 Penyesuaian Stok
+                            </button>
+
+                            <button class="menu-hapus" data-id="${barang.id}">
+                                🗑️ Hapus
+                            </button>
+
+                        </div>
+
+                    </div>
+
                 </td>
             </tr>
         `;
@@ -118,12 +148,27 @@ async function ambilData(){
 
 ambilData();
 
+// Aksi ⋮
+document.addEventListener("click", (e)=>{
+    document.querySelectorAll(".dropdown-menu").forEach(menu=>{
+        menu.classList.remove("show");
+    });
+
+    const tombol = e.target.closest(".btn-menu");
+
+    if(tombol){
+        e.stopPropagation();
+        tombol.nextElementSibling.classList.toggle("show");
+    }
+
+});
+
 // Edit
 tbody.addEventListener("click", async (e) => {
 
-    if (!e.target.closest(".edit")) return;
+    if (!e.target.closest(".menu-edit")) return;
 
-    const id = e.target.closest(".edit").dataset.id;
+    const id = e.target.closest(".menu-edit").dataset.id;
 
     const res = await fetch(API);
     const data = await res.json();
@@ -142,12 +187,107 @@ tbody.addEventListener("click", async (e) => {
     editId = barang.id;
 });
 
+// Tambah Stok
+tbody.addEventListener("click", async (e) => {
+
+    if (!e.target.closest(".tambah-stok")) return;
+
+    const id = e.target.closest(".tambah-stok").dataset.id;
+    const res = await fetch(API);
+    const data = await res.json();
+    const barang = data.find(item => item.id == id);
+
+    if (!barang) return;
+
+    tambahStokId = barang.id;
+    namaStok.value = barang.nama_barang;
+    stokSaatIni.value = barang.stok;
+    jumlahBeli.value = "";
+    hargaPembelian.value = "";
+    modalTambahStok.classList.add("show");
+});
+
+// Simpan Tambah Stok
+formTambahStok.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const jumlah = Number(jumlahBeli.value);
+    const hargaTotal = Number(hargaPembelian.value.replace(/\D/g, ""));
+
+    if (jumlah <= 0 || hargaTotal <= 0) {
+        alert("Jumlah dan harga pembelian harus diisi.");
+        return;
+    }
+
+    // Ambil data bahan terbaru
+    const res = await fetch(API);
+    const data = await res.json();
+    const barang = data.find(item => item.id == tambahStokId);
+
+    if (!barang) {
+        alert("Data bahan tidak ditemukan.");
+        return;
+    }
+
+    // Hitung harga / pcs dari pembelian baru
+    const hargaPerPcsBaru = hargaTotal / jumlah;
+
+    // Stok baru
+    const stokBaru = Number(barang.stok) + jumlah;
+
+    // Harga / pcs yang sekarang
+    let hargaPerPcs = Number(barang.harga_per_pcs);
+
+    // Jika harga baru lebih mahal
+    if (hargaPerPcsBaru > hargaPerPcs) {
+
+        const ubahHarga = confirm(
+            `Harga / pcs baru adalah Rp ${hargaPerPcsBaru.toLocaleString("id-ID")}.\n\n` +
+            `Harga / pcs saat ini adalah Rp ${hargaPerPcs.toLocaleString("id-ID")}.\n\n` +
+            `Harga baru lebih mahal. Ubah harga / pcs bahan menjadi harga baru?`
+        );
+
+        if (ubahHarga) {
+            hargaPerPcs = hargaPerPcsBaru;
+        }
+    }
+
+    // Update data bahan
+    const barangUpdate = {
+        ...barang,
+        stok: stokBaru,
+        harga_per_pcs: hargaPerPcs
+    };
+
+    await fetch(`${API}/${tambahStokId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(barangUpdate)
+    });
+
+    alert("Stok berhasil ditambahkan.");
+
+    formTambahStok.reset();
+    modalTambahStok.classList.remove("show");
+    tambahStokId = null;
+
+    ambilData();
+});
+
+btnBatalTambahStok.addEventListener("click", () => {
+    formTambahStok.reset();
+    modalTambahStok.classList.remove("show");
+    tambahStokId = null;
+});
+
 // Hapus Barang
 tbody.addEventListener("click", async (e) => {
 
-    if (!e.target.closest(".hapus")) return;
+    if (!e.target.closest(".menu-hapus")) return;
 
-    const id = e.target.closest(".hapus").dataset.id;
+    const id = e.target.closest(".menu-hapus").dataset.id;
 
     const yakin = confirm("Yakin ingin menghapus bahan ini?");
 

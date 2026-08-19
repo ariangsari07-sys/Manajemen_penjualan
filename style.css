@@ -136,6 +136,30 @@ body{
     transform:translateY(-2px);
 }
 
+.navbar-action {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#btnRiwayat {
+    border: none;
+    background: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#btnRiwayat:hover {
+    color: #6B7280;
+}
+
+#btnKembaliBahan {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
 /* ================= AKSI MENU ================= */
 .aksi-menu{
     position: relative;
@@ -575,3 +599,71 @@ tbody td:last-child{
     background:#B91C1C;
 }
 
+/* ================= RIWAYAT STOK ================= */
+#riwayatBox {
+    overflow-x: auto;
+}
+
+#riwayatBox .table-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#riwayatBox .table-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #1E1F25;
+}
+
+#riwayatBox table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+#riwayatBox th,
+#riwayatBox td {
+    padding: 18px;
+    text-align: left;
+}
+
+/* Lebar kolom */
+#riwayatBox th:nth-child(1),
+#riwayatBox td:nth-child(1) {
+    width: 5%;
+}
+
+#riwayatBox th:nth-child(2),
+#riwayatBox td:nth-child(2) {
+    width: 12%;
+}
+
+#riwayatBox th:nth-child(3),
+#riwayatBox td:nth-child(3) {
+    width: 18%;
+}
+
+#riwayatBox th:nth-child(4),
+#riwayatBox td:nth-child(4) {
+    width: 18%;
+}
+
+#riwayatBox th:nth-child(5),
+#riwayatBox td:nth-child(5) {
+    width: 17%;
+}
+
+#riwayatBox th:nth-child(6),
+#riwayatBox td:nth-child(6) {
+    width: 10%;
+}
+
+#riwayatBox th:nth-child(7),
+#riwayatBox td:nth-child(7) {
+    width: 20%;
+}
+
+#riwayatBox td {
+    white-space: normal;
+    word-break: break-word;
+}

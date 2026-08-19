@@ -40,6 +40,9 @@ const jumlahPenyesuaian = document.getElementById("jumlahPenyesuaian");
 const btnBatalPenyesuaian = document.querySelector(".batalPenyesuaian");
 let penyesuaianId = null;
 
+const btnRiwayat = document.getElementById("btnRiwayat");
+const tbodyRiwayat = document.getElementById("tbodyRiwayat");
+
 // Hitung Harga/Pcs
 function formatRupiah(angka){
 
@@ -411,4 +414,79 @@ btnBatal.addEventListener("click", () => {
     form.reset();
     hargaPerPcs.value = "";
     modal.classList.remove("show");
+});
+
+const judulHalaman = document.getElementById("judulHalaman");
+const subjudulHalaman = document.getElementById("subjudulHalaman");
+const btnKembaliBahan = document.getElementById("btnKembaliBahan");
+const API_RIWAYAT = "http://localhost:3000/riwayat-stok";
+
+// Tampilkan Riwayat
+btnRiwayat.addEventListener("click", async () => {
+    dataBahanBox.style.display = "none";
+    riwayatBox.style.display = "block";
+    btnRiwayat.style.display = "none";
+    btnTambah.style.display = "none";
+    btnKembaliBahan.style.display = "inline-flex";
+
+    judulHalaman.textContent = "Riwayat Stok";
+    subjudulHalaman.textContent = "Riwayat perubahan stok bahan.";
+
+    try {
+        const res = await fetch(API_RIWAYAT);
+        const data = await res.json();
+
+        tbodyRiwayat.innerHTML = "";
+
+        if (data.length === 0) {
+            tbodyRiwayat.innerHTML = `
+                <tr>
+                    <td colspan="7" style="text-align:center;">
+                        Belum ada riwayat stok.
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        data.forEach((item, index) => {
+            const tanggal = new Date(item.created_at);
+            const tanggalFormat = tanggal.toLocaleDateString(
+                "id-ID",
+                {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+            tbodyRiwayat.innerHTML += `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${tanggalFormat}</td>
+                    <td>${item.nama_barang || "-"}</td>
+                    <td>${item.nama_produk || "-"}</td>
+                    <td>${item.aktivitas}</td>
+                    <td>${item.jumlah > 0 ? "+" : ""}${item.jumlah}</td>
+                    <td>${item.keterangan || "-"}</td>
+                </tr>
+            `;
+        });
+
+    } catch (error) {
+        console.error("Gagal mengambil riwayat:", error);
+    }
+});
+
+// Kembali ke Data Bahan
+btnKembaliBahan.addEventListener("click", () => {
+    riwayatBox.style.display = "none";
+    dataBahanBox.style.display = "block";
+    btnKembaliBahan.style.display = "none";
+    btnRiwayat.style.display = "inline-flex";
+    btnTambah.style.display = "inline-flex";
+
+    judulHalaman.textContent = "Data Bahan";
+    subjudulHalaman.textContent =
+        "Kelola seluruh bahan baku untuk produk.";
 });

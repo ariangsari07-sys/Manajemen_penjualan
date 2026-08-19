@@ -65,16 +65,27 @@
             <!-- Navbar -->
             <div class="navbar">
                 <div>
-                    <h1>Data Bahan</h1>
-                    <p>Kelola seluruh bahan baku untuk produk.</p>
+                    <h1 id="judulHalaman">Data Bahan</h1>
+                    <p id="subjudulHalaman">
+                        Kelola seluruh bahan baku untuk produk.
+                    </p>
                 </div>
-                <button id="btnTambah">
-                    <i class="fa-solid fa-plus"></i> Tambah Bahan
-                </button>
+
+                <div class="navbar-action">
+                    <button id="btnRiwayat">Riwayat</button>
+                    <button id="btnKembaliBahan" style="display: none;">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        Kembali ke Data Bahan
+                    </button>
+                    <button id="btnTambah">
+                        <i class="fa-solid fa-plus"></i>
+                        Tambah Bahan
+                    </button>
+                </div>
             </div>
 
-            <!-- Tabel -->
-           <div class="table-box">
+            <!-- Tabel Data Bahan -->
+           <div class="table-box" id="dataBahanBox">
                 <div class="table-header">
                     <input type="text" placeholder="🔍 Cari bahan...">
                 </div>
@@ -94,6 +105,31 @@
                     <tbody id="tbody"></tbody>
                 </table>
             </div>
+        </div>
+
+        <!-- Tabel Riwayat Stok -->
+        <div class="table-box" id="riwayatBox" style="display: none;">
+            <div class="table-header">
+                <div>
+                    <h2>Riwayat</h2>
+                </div>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Tanggal</th>
+                        <th>Nama Bahan</th>
+                        <th>Nama Produk</th>
+                        <th>Aktivitas</th>
+                        <th>Jumlah</th>
+                        <th>Keterangan</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tbodyRiwayat"></tbody>
+            </table>
         </div>
 
         <!-- Modal -->
